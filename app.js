@@ -30,6 +30,7 @@ app.use("/users", usersRouter);
 const db = process.env.MONGO_URI;
 
 // connect to Mongo
+// now it works
 mongoose
   .connect(db, {
     useNewUrlParser: true,
