@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  h1 register
+
+  form(action="/register" method="POST")
+    div(class="form-group")
+      label(for="name") name: 
+      input(type="text" id="name" placeholder="enter screen name") 
+    div(class="form-group")
+      label(for="password") password:
+      input(type="text" id="password" placeholder="enter password")
+
+  p *register with github
