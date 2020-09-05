@@ -1,19 +1,17 @@
 extends layout
 
 block content
-  h1 register
+  h1 login
 
-  form(action="/register" method="POST")
+  form(action="/login" method="POST")
     div(class="form-group")
       label(for="name") name: 
       input(type="text" id="name" placeholder="enter screen name") 
     div(class="form-group")
       label(for="password") password:
       input(type="text" id="password" placeholder="enter password")
-    button(type="submit" class="btn btn-primary") register
 
-  p *register with github
+  p *login with github
   br
-  a(class="btn btn-secondary" href="../login") login
+  a(class="btn btn-secondary" href="../register") register
   a(class="btn btn-secondary" href="../") go back
-
