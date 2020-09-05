@@ -1,6 +1,7 @@
 const dotenv = require("dotenv").config();
 // MONGO: mongodb+srv://passenger:<password>@cluster0.bw2gg.mongodb.net/<dbname>?retryWrites=true&w=majority
 // grab a theme https://bootswatch.com/
+// 25 minutes
 const createError = require("http-errors");
 const express = require("express");
 const path = require("path");
