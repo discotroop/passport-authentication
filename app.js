@@ -1,4 +1,4 @@
-require("dotenv").config();
+const dotenv = require("dotenv").config();
 // MONGO: mongodb+srv://passenger:<password>@cluster0.bw2gg.mongodb.net/<dbname>?retryWrites=true&w=majority
 // grab a theme https://bootswatch.com/
 const createError = require("http-errors");
@@ -6,6 +6,7 @@ const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
+const mongoose = require("mongoose");
 
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
@@ -24,6 +25,19 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
+
+// db setup
+const db = process.env.MONGO_URI;
+
+// connect to Mongo
+mongoose
+  .connect(db, {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useUnifiedTopology: true
+  })
+  .then(res => console.log("sucess"))
+  .catch(err => console.log(err));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
