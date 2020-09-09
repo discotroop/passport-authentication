@@ -2,6 +2,7 @@ extends layout
 
 block content
   h1 login
+  include partials/messages.pug
 
   form(action="/login" method="POST")
     div(class="form-group")

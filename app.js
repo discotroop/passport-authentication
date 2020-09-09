@@ -1,7 +1,5 @@
 const dotenv = require("dotenv").config();
-// MONGO: mongodb+srv://passenger:<password>@cluster0.bw2gg.mongodb.net/<dbname>?retryWrites=true&w=majority
 // grab a theme https://bootswatch.com/
-// 25 minutes
 const createError = require("http-errors");
 const express = require("express");
 const path = require("path");
@@ -9,6 +7,8 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const flash = require("connect-flash");
+const session = require("express-session");
 
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
@@ -18,6 +18,18 @@ const app = express();
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
+
+// Express Session
+app.use(
+  session({
+    secret: "secret",
+    resave: true,
+    saveUninitialized: true
+  })
+);
+
+// Connect Flash
+app.use(flash());
 
 app.use(logger("dev"));
 app.use(express.json());
@@ -44,6 +56,13 @@ mongoose
 
 // Bodyparser
 app.use(bodyParser.urlencoded({ extended: false }));
+
+// Global variables
+app.use(function(req, res, next) {
+  res.locals.success_message = req.flash("success_message");
+  res.locals.error_message = req.flash("error_message");
+  next();
+});
 
 // ERRORS
 // catch 404 and forward to error handler
