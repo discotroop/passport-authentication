@@ -2,20 +2,21 @@ extends layout
 
 block content
   h1 register
+  include partials/messages.pug
 
   form(action="/users/register" method="POST")
     div(class="form-group")
       label(for="name") Name: 
-      input(type="name" id="name" name="name" value="test" placeholder="enter name")
+      input(type="name" id="name" name="name" value=typeof name != 'undefined' ? name: ''  placeholder="enter name")
     div(class="form-group")
       label(for="email") Email: 
-      input(type="email" id="email" placeholder="email")  
+      input(type="email" id="email" name="email" value=typeof email != 'undefined' ? email : ''  placeholder="email")  
     div(class="form-group")
       label(for="password") Password:
-      input(type="text" id="password" placeholder="create password")
+      input(type="password" id="password" name="password" value=typeof password != 'undefined' ? password : ''  placeholder="create password")
     div(class="form-group")
       label(for="password-confirm") Confirm Password:
-      input(type="text" id="password-confirm" placeholder="confirm password")
+      input(type="passwordConfirm" id="passwordConfirm" name="passwordConfirm" value=typeof passwordConfirm != 'undefined' ? passwordConfirm : ''  placeholder="confirm password")
     button(type="submit" class="btn btn-primary") register
 
   p *register with github
