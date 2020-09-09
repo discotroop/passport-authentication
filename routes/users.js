@@ -68,6 +68,7 @@ router.post("/register", (req, res, next) => {
             newUser
               .save()
               .then(user => {
+                // flash message not loading... figure that out ?
                 req.flash(
                   "success_message",
                   "You are registered and can login"
