@@ -9,11 +9,15 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const flash = require("connect-flash");
 const session = require("express-session");
+const passport = require("passport");
 
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
 
 const app = express();
+
+// Passport
+require("./config/passport")(passport);
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -27,6 +31,10 @@ app.use(
     saveUninitialized: true
   })
 );
+
+// Passport
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Connect Flash
 app.use(flash());
@@ -61,6 +69,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(function(req, res, next) {
   res.locals.success_message = req.flash("success_message");
   res.locals.error_message = req.flash("error_message");
+  res.locals.error = req.flash("error");
   next();
 });
 
