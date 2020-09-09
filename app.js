@@ -38,7 +38,7 @@ mongoose
     useCreateIndex: true,
     useUnifiedTopology: true
   })
-  .then(res => console.log("success"))
+  .then(res => console.log("success, connnected to db"))
   .catch(err => console.log(err));
 
 // catch 404 and forward to error handler
