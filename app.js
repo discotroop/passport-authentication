@@ -41,6 +41,10 @@ mongoose
   .then(res => console.log("success, connnected to db"))
   .catch(err => console.log(err));
 
+// Bodyparser
+app.use(express.urlencoded({ extended: false }));
+
+// ERRORS
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
