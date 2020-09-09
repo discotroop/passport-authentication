@@ -8,6 +8,7 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
 
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
@@ -42,7 +43,7 @@ mongoose
   .catch(err => console.log(err));
 
 // Bodyparser
-app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // ERRORS
 // catch 404 and forward to error handler

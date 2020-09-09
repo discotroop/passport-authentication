@@ -3,13 +3,19 @@ extends layout
 block content
   h1 register
 
-  form(action="/register" method="POST")
+  form(action="/users/register" method="POST")
     div(class="form-group")
-      label(for="name") name: 
-      input(type="text" id="name" placeholder="enter screen name") 
+      label(for="name") Name: 
+      input(type="name" id="name" name="name" value="test" placeholder="enter name")
     div(class="form-group")
-      label(for="password") password:
-      input(type="text" id="password" placeholder="enter password")
+      label(for="email") Email: 
+      input(type="email" id="email" placeholder="email")  
+    div(class="form-group")
+      label(for="password") Password:
+      input(type="text" id="password" placeholder="create password")
+    div(class="form-group")
+      label(for="password-confirm") Confirm Password:
+      input(type="text" id="password-confirm" placeholder="confirm password")
     button(type="submit" class="btn btn-primary") register
 
   p *register with github
