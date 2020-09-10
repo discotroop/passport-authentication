@@ -1,26 +1,27 @@
 extends layout
 
 block content
-  h1 register
-  include partials/messages.pug
+  div(class="row mt-5")
+    div(class="col-md-6 m-auto")
+      div(class="card card-body text-center")
+        h1(class="text-center mb-3") Register
+          include partials/messages.pug
+        form(action="/users/register" method="POST")
+          div(class="form-group")
+            label(for="name") Name: 
+            input(type="name" id="name" name="name" value=typeof name != 'undefined' ? name: ''  placeholder="enter name")
+          div(class="form-group")
+            label(for="email") Email: 
+            input(type="email" id="email" name="email" value=typeof email != 'undefined' ? email : ''  placeholder="email")  
+          div(class="form-group")
+            label(for="password") Password:
+            input(type="password" id="password" name="password" value=typeof password != 'undefined' ? password : ''  placeholder="create password")
+          div(class="form-group")
+            label(for="password-confirm") Confirm Password:
+            input(type="passwordConfirm" id="passwordConfirm" name="passwordConfirm" value=typeof passwordConfirm != 'undefined' ? passwordConfirm : ''  placeholder="confirm password")
+          button(type="submit" class="btn btn-primary btn-block") register
 
-  form(action="/users/register" method="POST")
-    div(class="form-group")
-      label(for="name") Name: 
-      input(type="name" id="name" name="name" value=typeof name != 'undefined' ? name: ''  placeholder="enter name")
-    div(class="form-group")
-      label(for="email") Email: 
-      input(type="email" id="email" name="email" value=typeof email != 'undefined' ? email : ''  placeholder="email")  
-    div(class="form-group")
-      label(for="password") Password:
-      input(type="password" id="password" name="password" value=typeof password != 'undefined' ? password : ''  placeholder="create password")
-    div(class="form-group")
-      label(for="password-confirm") Confirm Password:
-      input(type="passwordConfirm" id="passwordConfirm" name="passwordConfirm" value=typeof passwordConfirm != 'undefined' ? passwordConfirm : ''  placeholder="confirm password")
-    button(type="submit" class="btn btn-primary") register
-
-  p *register with github
-  br
-  a(class="btn btn-secondary" href="./login") login
-  a(class="btn btn-secondary" href="../") go back
-
+        p *register with github
+        br
+        a(class="btn btn-secondary" href="./login") login
+        a(class="btn btn-secondary" href="../") go back
