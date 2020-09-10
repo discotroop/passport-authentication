@@ -1,20 +1,22 @@
 extends layout
 
 block content
-  h1 login
-  include partials/messages.pug
+  div(class="row mt-5")
+    div(class="col-md-6 m-auto")
+      div(class="card card-body text-center")
+        h1(class="text-center mb-3")
+          i(class="fa fa-sign-in-alt") Login
+        include partials/messages.pug
 
-  form(action="/users/login" method="POST")
-    div(class="form-group")
-      label(for="email") email: 
-      input(type="email" id="email" name="email" placeholder="email") 
-    div(class="form-group")
-      label(for="password") password:
-      input(type="password" id="password" name="password" placeholder="enter password")
-    button(type="submit" class="btn btn-primary") login
-
-
-  p *login with github
-  br
-  a(class="btn btn-secondary" href="./register") register
-  a(class="btn btn-secondary" href="../") go back
+        form(action="/users/login" method="POST")
+          div(class="form-group")
+            label(for="email") email: 
+            input(type="email" id="email" name="email" placeholder="email") 
+          div(class="form-group")
+            label(for="password") password:
+            input(type="password" id="password" name="password" placeholder="enter password")
+          button(type="submit" class="btn btn-primary btn-block") login
+        p *login with github
+        br
+        a(class="btn btn-secondary btn-block" href="./register") register
+        a(class="btn btn-secondary btn-block" href="../") go back
