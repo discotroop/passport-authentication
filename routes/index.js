@@ -1,5 +1,6 @@
 var express = require("express");
 var router = express.Router();
+const { ensureAuthenticated } = require("../config/auth");
 
 // use font awesome as well ?
 
@@ -13,8 +14,10 @@ router.get("/", function(req, res, next) {
 // router.get("/login", function(req, res, next) {
 //   res.render("login");
 // });
-router.get("/dashboard", function(req, res, next) {
-  res.render("dashboard");
+router.get("/dashboard", ensureAuthenticated, function(req, res, next) {
+  res.render("dashboard", {
+    name: req.user.name
+  });
 });
 
 module.exports = router;
