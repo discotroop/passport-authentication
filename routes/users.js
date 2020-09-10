@@ -5,7 +5,7 @@ const flash = require("connect-flash");
 const passport = require("passport");
 
 // User Model
-const User = require("../models/User.js");
+const User = require("../models/User");
 
 // Register
 router.get("/register", (req, res, next) => res.render("register"));
@@ -86,10 +86,20 @@ router.get("/login", (req, res, next) => res.render("login"));
 // Handle Login
 router.post("/login", (req, res, next) => {
   console.log("logging in");
-  passport.authenticate("local", {
-    successRedirect: "/dashboard",
-    failureRedirect: "/login",
-    failureFlash: true
+  console.log(req.body);
+  passport.authenticate("local", (err, user, info) => {
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      return res.redirect("./login");
+    }
+    req.logIn(user, err => {
+      if (err) {
+        return next(err);
+      }
+      return res.redirect("../dashboard");
+    });
   })(req, res, next);
 });
 

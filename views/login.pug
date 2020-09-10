@@ -4,13 +4,13 @@ block content
   h1 login
   include partials/messages.pug
 
-  form(action="login" method="POST")
+  form(action="/users/login" method="POST")
     div(class="form-group")
-      label(for="name") name: 
-      input(type="text" id="name" placeholder="enter screen name") 
+      label(for="email") email: 
+      input(type="email" id="email" name="email" placeholder="email") 
     div(class="form-group")
       label(for="password") password:
-      input(type="text" id="password" placeholder="enter password")
+      input(type="password" id="password" name="password" placeholder="enter password")
     button(type="submit" class="btn btn-primary") login
 
 
